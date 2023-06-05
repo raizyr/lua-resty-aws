@@ -39,7 +39,7 @@ local ALGORITHM = "AWS4-HMAC-SHA256"
 --     hostname template: see https://github.com/aws/aws-sdk-js/blob/ae07e498e77000e55da70b20996dc8fd2f8b3051/lib/region_config_data.json
 local function prepare_awsv4_request(config, request_data)
   local region = config.signingRegion or config.region
-  local service = config.endpointPrefix or config.targetPrefix -- TODO: targetPrefix as fallback, correct???
+  local service = config.signingName or config.endpointPrefix or config.targetPrefix -- TODO: targetPrefix as fallback, correct???
   local request_method = request_data.method -- TODO: should this get a fallback/default??
 
   local canonicalURI = request_data.canonicalURI
